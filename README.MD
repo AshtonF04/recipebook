@@ -112,5 +112,5 @@ Example Recipe Object:
 ## 🧑‍💻 Author
 
 **Ashton Franklin**  
-📧 [ashtonfranklin.com]  
+📧 [ashtonfranklin772@gmail.com]  
 🔗 [GitHub Profile](https://github.com/AshtonF04)
