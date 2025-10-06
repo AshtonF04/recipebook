@@ -1,0 +1,56 @@
+# Node.js dependencies
+node_modules/
+backend/node_modules/
+frontend/node_modules/
+
+# Environment files
+.env
+.env.local
+backend/.env
+frontend/.env
+
+# Build output
+/dist
+/build
+frontend/build
+backend/dist
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs
+*.log
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.swp
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Cache
+.cache/
+frontend/.cache/
+backend/.cache/
+*.tmp
+
+# Test coverage
+coverage/
+*.lcov
+
+# TypeScript build artifacts (if you use TS)
+*.tsbuildinfo
+
+# Misc
+*.pid
+*.seed
+*.tgz
+
+# Local env settings
+.env.development.local
+.env.test.local
+.env.production.local
