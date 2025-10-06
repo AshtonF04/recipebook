@@ -5,6 +5,7 @@ const recipeRoutes = require('./routes/recipes');
 
 // Create express app
 const app = express();
+app.use(express.json())
 
 // Use routes 
 app.use('/api/recipes', recipeRoutes);
