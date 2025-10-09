@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose')
 require('dotenv').config();
 
 const recipeRoutes = require('./routes/recipes');
@@ -10,7 +11,14 @@ app.use(express.json())
 // Use routes 
 app.use('/api/recipes', recipeRoutes);
 
-// Start app
-app.listen(process.env._PORT, () => {
-    console.log('app listening on port ', process.env._PORT);
-})
+// Connect to database
+mongoose.connect(process.env._URI)
+    .then(() => {
+        // Start app
+        app.listen(process.env._PORT, () => {
+            console.log('connected to database, app listening on port ', process.env._PORT);
+        })
+    })
+    .catch((error) => {
+        console.log(error)
+    })

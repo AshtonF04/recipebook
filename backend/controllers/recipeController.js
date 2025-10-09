@@ -1,0 +1,26 @@
+const Recipe = require('../models/RecipeModel')
+
+// Get all recipes
+const getRecipes = async (req, res) => {
+    try{
+        const recipes = await Recipe.find().sort({createdAt: -1})
+        res.status(200).json(recipes)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+
+}
+
+// Create new recipes
+const createRecipe = async (req, res) => {
+    const {title, ingredients, instructions, category} = req.body
+    
+    try {
+        const recipe = await Recipe.create({title, ingredients, instructions, category})
+        res.status(200).json(recipe)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
+
+module.exports={ createRecipe, getRecipes }

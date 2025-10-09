@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const { createRecipe, getRecipes } = require('../controllers/recipeController');
+const { create } = require('../models/RecipeModel');
 
 // Get all recipes
-router.get('/', (req, res) => {
-    res.status(200).json({msg: 'Get all recipes'});
-})
+router.get('/', getRecipes)
 
 // Get single recipe
 router.get('/:id', (req, res) => {
@@ -12,9 +12,7 @@ router.get('/:id', (req, res) => {
 })
 
 // Add new recipe
-router.post('/', (req, res) => {
-    res.status(200).json({msg: 'Add new recipe'})
-})
+router.post('/', createRecipe)
 
 // Update existing recipe
 router.patch('/:id', (req, res) => {
