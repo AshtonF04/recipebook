@@ -1,15 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { createRecipe, getRecipes } = require('../controllers/recipeController');
+const { createRecipe, getRecipes, getRecipe, deleteRecipe } = require('../controllers/recipeController');
 const { create } = require('../models/RecipeModel');
 
 // Get all recipes
 router.get('/', getRecipes)
 
 // Get single recipe
-router.get('/:id', (req, res) => {
-    res.status(200).json({msg: 'Get single recipe'})
-})
+router.get('/:id', getRecipe)
 
 // Add new recipe
 router.post('/', createRecipe)
@@ -20,8 +18,6 @@ router.patch('/:id', (req, res) => {
 })
 
 // Delete existing recipe
-router.delete('/:id', (req, res) => {
-    res.status(200).json({msg: 'Delete recipe'})
-})
+router.delete('/:id', deleteRecipe)
 
 module.exports = router;
