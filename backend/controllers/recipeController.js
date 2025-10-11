@@ -1,4 +1,5 @@
 const Recipe = require('../models/RecipeModel')
+const mongoose = require('mongoose');
 
 // Get all recipes
 const getRecipes = async (req, res) => {
@@ -15,10 +16,20 @@ const getRecipes = async (req, res) => {
 const getRecipe = async (req, res) => {
     const { id } = req.params;
     try{
-        const recipe = await Recipe.findById(id)
-        if (!recipe){
-            return res.status(404).json({erorr: "No such recipe."})
+        // Check if ID is valid
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ error: "Invalid recipe ID." });
         }
+
+        // Get recipe from database
+        const recipe = await Recipe.findById(id)
+
+        // If recipe not found return 404 error
+        if (!recipe){
+            return res.status(404).json({ error: "No such recipe." })
+        }
+        
+        // Return recipe if found
         res.status(200).json(recipe)
     } catch (error) {
         res.status(400).json({error: error.message})
@@ -49,4 +60,16 @@ const deleteRecipe = async (req, res) => {
     }
 }
 
-module.exports={ createRecipe, getRecipes, getRecipe, deleteRecipe }
+// Update Recipe
+const updateRecipe = async (req, res) => {
+    const { id } = req.params
+
+    try {
+        const recipe = await Recipe.updateOne({_id: id}, {$set: req.body}, {runValidators: true})
+        res.status(200).json(recipe)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+} 
+
+module.exports={ createRecipe, getRecipes, getRecipe, deleteRecipe, updateRecipe }

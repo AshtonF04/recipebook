@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { createRecipe, getRecipes, getRecipe, deleteRecipe } = require('../controllers/recipeController');
-const { create } = require('../models/RecipeModel');
+const { createRecipe, getRecipes, getRecipe, deleteRecipe, updateRecipe } = require('../controllers/recipeController');
 
 // Get all recipes
 router.get('/', getRecipes)
@@ -13,9 +12,7 @@ router.get('/:id', getRecipe)
 router.post('/', createRecipe)
 
 // Update existing recipe
-router.patch('/:id', (req, res) => {
-    res.status(200).json({msg: 'Update recipe'})
-})
+router.patch('/:id', updateRecipe)
 
 // Delete existing recipe
 router.delete('/:id', deleteRecipe)
