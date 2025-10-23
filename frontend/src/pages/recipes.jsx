@@ -17,16 +17,15 @@ const home = () => {
   }, [])
 
   const recipeComponents = recipes.map(recipe => 
-    <li>{recipe.title}</li>
+    <RecipeCard key={recipe._id} recipe={recipe} />
   )
 
   return (
     <div>
-      <h2 class="font-bold text-xl">Your Recipes</h2>
+      <h2 className="font-bold text-xl">Your Recipes</h2>
 
       <div className="flex flex-wrap ">
-        <RecipeCard />
-        <RecipeCard />
+        {recipeComponents}
       </div>
     </div>
   )
