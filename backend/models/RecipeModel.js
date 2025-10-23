@@ -18,6 +18,10 @@ const recipeSchema = new mongoose.Schema({
         enum: ['Breakfast', 'Lunch', 'Dinner', 'Dessert', 'Other'],
         required: true
     },
+    imageUrl: {
+        type: String,
+        required: true
+    },
 }, { timestamps: true })
 
 module.exports = mongoose.model('Recipe', recipeSchema)
